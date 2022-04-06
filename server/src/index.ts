@@ -5,7 +5,7 @@ import { buildSchema } from "type-graphql";
 
 import { HelloResolver } from "./resolvers/hello";
 
-const port = 4000;
+const port = process.env.PORT || 8080;
 
 async function main() {
   const app = express();
@@ -21,12 +21,12 @@ async function main() {
 
   apolloServer.applyMiddleware({ app });
 
-  app.get("/hello", (_, res) => {
+  app.get("/", (_, res) => {
     res.send("hello world!");
   });
 
   app.listen(port, () => {
-    console.log(`server running on localhost:${port}`);
+    console.log(`server running on http://localhost:${port}`);
   });
 }
 
